@@ -1,0 +1,106 @@
+---------------------------------------------------------------------------------------------------------------------
+
+HTTP verbs, endpoint and status codes
+https://wwww.google.com/--URL
+
+
+https --> schema
+www.google.com --> hostname
+/maps --> optional path
+
+
+HTTP METHODS --> CRUD operatsiyalari
+CRUD
+
+CREATE <--> POST -request --POST request
+READ <---> GET. -- GET request
+UPDATE <---> PUT (PATCH)
+DELETE <---> DELETE -- DELETE
+
+WEBSITE --- HTML, CSS, IMAGES, JS
+WEB API ---> endpoints --URL lar to'plami
+1) https://www.mysite.uz/api/books -- GET request -> barcha kitblarni jo'natadi
+2) https://www.mysite.uz/api/books/<id> -- Birgina kitobni (id ga ko'ra) bizga qaytaradi
+3) https://www.mysite.uz/api/users/ -- GET request -> barcha foydalanuvchilar jo'natadi
+4) https://www.mysite.uz/api/books/ --> kitobni nomi, muallifi, page, narxi, isbn
+
+json format 
+
+{
+    "title": "kecha va kunduz"
+    "author": "Cho'lpon"
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+Status codes 
+
+status.HTTP_200_OK
+status.HTTP_201_CREATED
+status.HTTP_204_NO_CONTENT
+status.HTTP_400_BAD_REQUEST
+status.HTTP_401_UNAUTHORIZED
+status.HTTP_403_FORBIDDEN
+status.HTTP_404_NOT_FOUND
+status.HTTP_409_CONFLICT
+status.HTTP_500_INTERNAL_SERVER_ERROR
+
+
+HTTP STATUS CODES — самые нужные
+Код	Название	Когда использовать
+200 OK	Всё успешно	GET-запрос прошёл, данные вернулись
+201 Created	Создано	После POST — объект успешно создан
+202 Accepted	Принято	Запрос принят, но ещё не обработан
+204 No Content	Успешно, но без тела	Например, после DELETE
+301 Moved Permanently	Постоянный редирект	URL навсегда перемещён
+302 Found	Временный редирект	URL временно перемещён
+304 Not Modified	Без изменений	Используется для кэша
+400 Bad Request	Ошибка клиента	Неверные данные в запросе
+401 Unauthorized	Без авторизации	Нет или неверный токен
+403 Forbidden	Доступ запрещён	Авторизован, но нет прав
+404 Not Found	Не найдено	Ресурс отсутствует
+405 Method Not Allowed	Метод не разрешён	Например, POST на эндпоинт только для GET
+409 Conflict	Конфликт данных	Уже существует запись
+422 Unprocessable Entity	Неверные данные	Формат ок, но логика — нет
+429 Too Many Requests	Слишком много запросов	Превышен лимит API
+500 Internal Server Error	Ошибка сервера	Баг на сервере, исключение
+503 Service Unavailable	Недоступен	Сервер перегружен или на техработах
+
+------------------------------------------------------------------------------------------------------------------------
+
+HTTP headres
+
+
+HTTP HEADERS — самые часто используемые
+
+Content-Type --	application/json --	Указывает формат тела (JSON, HTML, XML и т.д.)
+
+Accept -- application/json  --	Говорит серверу, что клиент хочет получить
+
+Authorization --	Bearer eyJhbGciOi... --	Токен для авторизации
+
+User-Agent	-- Mozilla/5.0 -- Информация о клиенте (браузер, приложение)
+
+Host --	api.example.com	-- К какому домену идёт запрос
+
+Referer	-- https://site.com/page --	Откуда пришёл запрос
+
+Origin --	https://frontend.com --	Используется при CORS
+
+Cookie --	sessionid=abcd123 --	Передаёт cookies
+
+Cache-Control --	no-cache --	Управление кэшем
+
+Content-Length --	512 --	Размер тела запроса/ответа
+
+Access-Control-Allow-Origin --	* --	Разрешённые источники (CORS)
+
+Access-Control-Allow-Methods --	GET, POST, PUT, DELETE --	Разрешённые HTTP методы
+
+Access-Control-Allow-Headers --	Authorization, Content-Type	 -- Разрешённые заголовки (CORS)
+
+Set-Cookie --	sessionid=abcd; HttpOnly --	Устанавливает cookie
+
+WWW-Authenticate --	Bearer realm="example" --	Для ответа при 401 Unauthorized
+
+
