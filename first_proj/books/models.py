@@ -8,6 +8,6 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     isbn = models.CharField(max_length=13)
     price = models.IntegerField()
-
+ 
     def __str__(self):
         return self.title
