@@ -5,7 +5,7 @@ from .serializers import BookSerializer
 from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework import status
-
+from django.shortcuts import get_object_or_404
 
 
 
@@ -47,13 +47,50 @@ class BookDetailApi(APIView):
         return Response(data)
             
 
-class BookDeleteApi(generics.DestroyAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer 
+# class BookDeleteApi(generics.DestroyAPIView):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer 
 
-class BookUpdateApi(generics.UpdateAPIView):
-     queryset = Book.objects.all()
-     serializer_class = BookSerializer 
+class BookDeleteApi(APIView):
+     
+     def delete(self, request, pk):
+         try:
+             book= Book.objects.get(id=pk)
+             book.delete()
+             return Response({
+                 "status": True,
+                 "massage": "Successfully deleted"
+             }, status = status.HTTP_200_OK)
+         except Exception:
+             return Response({
+                 "status": False,
+                 "Massage": "Book is not found"
+             }, status = status.HTTP_400_BAD_REQUEST)
+             
+
+# class BookUpdateApi(generics.UpdateAPIView):
+#      queryset = Book.objects.all()
+#      serializer_class = BookSerializer 
+
+class BookUpdateApi(APIView):
+    
+    def put(self, request, pk):
+        book = get_object_or_404(Book.objects.all(), id=pk)
+        data = request.data
+        serializer = BookSerializer(instance=book, data=data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            book_saved = serializer.save()
+        return Response(
+            {
+                "status":True, 
+                "massage" :f"Book {book_saved} updated successfully"
+            }
+        )
+
+
+
+
+
 
 # class BookCreateApi(generics.CreateAPIView):
 #      queryset = Book.objects.all()
