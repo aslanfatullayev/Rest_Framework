@@ -100,17 +100,7 @@ class BookListCreateApi(generics.CreateAPIView):
       queryset = Book.objects.all()
       serializer_class = BookSerializer 
 
-class BookCreateApi(APIView):
 
-    def post(self, request):
-        data = request.data
-        serializer = BookSerializer(data=data)
-        if serializer.is_valid():
-            books = serializer.save()
-            data = {'status': f"Books are saved to the database",
-                    'books': data
-                    }
-            return Response(data)
         
 
 class BookUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
@@ -124,3 +114,37 @@ def book_list_view(request, *args, **kwargs):
     serializer = BookSerializer(books, many=True)
     return Response(serializer.data)
     
+class BookCreateApi(APIView):
+    def post(self, request):
+        data = request.data
+        serializer = BookSerializer(data=data)
+        if serializer.is_valid():
+            book = serializer.save()
+            return Response(
+                {
+                    "status": True,
+                    "message": "Book saved to the database",
+                    "book": BookSerializer(book).data
+                },
+                status=status.HTTP_201_CREATED
+            )
+        return Response(
+            {
+                "status": False,
+                "message": serializer.errors
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+
+# class BookCreateApi(APIView):
+
+#     def post(self, request):
+#         data = request.data
+#         serializer = BookSerializer(data=data)
+#         if serializer.is_valid():
+#             books = serializer.save()
+#             data = {'status': f"Books are saved to the database",
+#                     'books': books
+#                     }
+#             return Response(data)
