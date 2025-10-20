@@ -24,6 +24,37 @@ WEB API ---> endpoints --URL lar to'plami
 3) https://www.mysite.uz/api/users/ -- GET request -> barcha foydalanuvchilar jo'natadi
 4) https://www.mysite.uz/api/books/ --> kitobni nomi, muallifi, page, narxi, isbn
 
+------------------------------------------------------------------------------------------------------------------------
+Viewlar 2 ga bo'linadi 
+
+                                                  Views
+
+    Function Views                                ||                Class-based View
+
+
+    --------------------------------------(1-Class-Based Views)------------------------------------------------------
+
+    1) Concreate Views -
+    CreateAPIView - POST
+    ListAPIView - GET
+    RetrieveAPIViews - GET (with ID)
+    UpdateAPIView - PUT 
+    DestroyAPIView - DELETE
+
+    2) CENERIC VIEWS -
+    ListCreateAPIViews - GET, POST
+    RetrieveUpdateAPIview - GET, PUT
+    RetrieveCreateAPIViews - GET, DELETE
+    RetrieveUpdateDestroyAPIView - GET,PUT,DELETE
+
+    3)APIView <-- View
+    GET, PUT, PATCH, CREATE, UPDATE, DELETE
+
+    4) VIEWSET --> MODELVIEWSET --> GET, PUT, PATCH, CREATE, UPDATE, DELETE
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 json format 
 
 {
